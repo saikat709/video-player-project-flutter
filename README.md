@@ -1,4 +1,4 @@
 # videoplayer
 
-A new Flutter project.
+A Video Player Flutter project.
 
