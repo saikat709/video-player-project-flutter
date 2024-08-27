@@ -60,7 +60,6 @@ class _VideoScreenState extends State<VideoScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // debugPrint((MediaQuery.of(context).size.width/MediaQuery.of(context).size.width).toString());
     debugPrint(_videoRatio.toString());
     return PopScope(
         onPopInvokedWithResult: (_, __){
@@ -89,7 +88,7 @@ class _VideoScreenState extends State<VideoScreen> {
                             Navigator.of(context).pop();
                           },
                         ),
-                        title: const Text("path/to/video.mp4"),
+                        title: Text(_controller.dataSource ),
                         backgroundColor: Colors.blueAccent.withOpacity(0.555),
                       ),
                     ),

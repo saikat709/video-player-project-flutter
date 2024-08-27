@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:videoplayer/components/get_input_doalog.dart';
 import 'package:videoplayer/components/selection_card.dart';
 import 'package:videoplayer/enums.dart';
 import 'package:videoplayer/screens/VideoScreen.dart';
@@ -14,6 +15,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  String? _url;
 
   @override
   void initState() {
@@ -45,6 +47,17 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+  Future<void> getInput() async {
+    await showDialog(
+        context: context,
+        builder: (builder) => GetInputDialog(
+          onChanged: (val){
+            _url = val;
+          },
+        )
+    );
+  }
+
   void networkVideo() async {
     try {
       final result = await InternetAddress.lookup("www.google.com");
@@ -55,6 +68,11 @@ class _HomeScreenState extends State<HomeScreen> {
       debugPrint(e.toString());
       debugPrint("Not connected.");
     }
+
+    await getInput();
+    ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(_url!))
+    );
   }
 
   Widget popUp(){
