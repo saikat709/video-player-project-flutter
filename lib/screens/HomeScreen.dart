@@ -70,14 +70,31 @@ class _HomeScreenState extends State<HomeScreen> {
     }
 
     await getInput();
+    showSnackbar(_url!);
+    _url = null;
+  }
+
+
+  void showSnackbar(String text){
     ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(_url!))
+        SnackBar(
+            content: Text(text),
+            action: SnackBarAction(
+                label: "Cancel",
+                onPressed: (){
+                  ScaffoldMessenger.of(context).clearSnackBars();
+                }),
+        )
     );
   }
+
 
   Widget popUp(){
     return PopupMenuButton<HomePopupOptions>(
         icon: const Icon(Icons.more_vert_rounded),
+        onSelected: (val){
+          showSnackbar("$val not implemented yet.");
+        },
         itemBuilder: (context) => <PopupMenuEntry<HomePopupOptions>>[
           const PopupMenuItem<HomePopupOptions>(
             value: HomePopupOptions.LoadAll,

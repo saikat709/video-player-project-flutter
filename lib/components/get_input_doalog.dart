@@ -24,10 +24,11 @@ class GetInputDialog extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 12,),
-            TextFormField(
+            TextField(
               onChanged: (val){
                 onChanged(val);
               },
+              maxLines: 1,
               decoration: const InputDecoration(
                 prefix: Text("https://"),
                 label: Text("Enter url here.."),
@@ -35,8 +36,8 @@ class GetInputDialog extends StatelessWidget {
                   borderSide: BorderSide(
                     color: Colors.blueAccent,
                     width: 5.0,
-                  )
-                )
+                  ),
+                ),
               ),
             ),
             Row(
